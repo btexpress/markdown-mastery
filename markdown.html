@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>markdown.html</title>
+<style>
+* {
+    overflow: visible !important;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    box-decoration-break: clone;
+}
+
+html, body {
+    background: #FFF;
+    font-family: "Segoe UI", Arial, freesans, sans-serif;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #333;
+    word-wrap: break-word;
+	hyphens: auto;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 4px solid #EEE;
+}
+
+code {
+    padding: .1em .4em;
+    display: inline-block;
+    background-color: #f9f2f4;
+    color: #c7254e;
+    border-radius: 3px;
+    border: 0 none;
+    font: 9px Consolas, "Liberation Mono", Menlo, "Courier New", Courier, monospace;
+    hyphens: manual;
+}
+
+pre code {
+    padding: 15px;
+    display: block;
+    background-color: #F9F9F9;
+    color: #555;
+    font-size: 10px;
+    box-shadow: inset -1px -1px 0 rgba(0, 0, 0, .08);
+    word-wrap: normal;
+}
+
+/* replace light background for some hljs themes */
+code.github-css,
+code.github-gist-css,
+code.tomorrow-css,
+code.default-css,
+code.googlecode-css,
+code.ascetic-css,
+code.color-brewer-css,
+code.grayscale-css,
+code.idea-css,
+code.vs-css,
+code.xcode-css {
+    background-color: #F9F9F9 !important;
+}
+
+blockquote {
+    padding: 10px;
+    margin-left: 0;
+    color: #666;
+    border: 0 none;
+    border-left: 4px solid #EEE;
+}
+
+blockquote p:last-child,
+blockquote ul:last-child,
+blockquote ol:last-child {
+    margin-bottom: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #FFF;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
+}
+
+table div {
+    page-break-inside: avoid;
+}
+
+th, td {
+    text-align: left;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    padding: 8px 14px;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
+}
+
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+
+table > tbody + tbody {
+    border-top: 2px solid #DDD;
+}
+
+table table {
+    background-color: #FFF;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    border: 1px solid #DDD;
+}
+
+table > thead > tr > th,
+table > thead > tr > td {
+    border-bottom-width: 2px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 90%;
+}
+
+table > tbody > tr:nth-of-type(odd) {
+    background-color: #F9F9F9;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1.1;
+    color: #111;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    page-break-after: avoid;
+}
+
+h1, h2 {
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 7px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 17px;
+}
+
+h3 {
+    font-size: 15px;
+}
+
+h4 {
+    font-size: 11px;
+}
+
+h5, h6 {
+    font-size: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+    position: relative;
+    bottom: 1px;
+}
+
+ul,
+ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+ul li,
+ol li {
+    margin-bottom: 2px;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: #4078C0;
+}
+
+.new-page,
+.page-break,
+.next-page,
+.page-end {
+    page-break-before: always;
+}
+
+#pageHeader,
+#pageHeader a,
+#pageHeader a:visited {
+    color: #777;
+}
+
+#pageHeader span {
+    vertical-align: middle;
+}
+
+#pageFooter {
+    border-top: 1px solid #EEE;
+    padding-top: 5px;
+    color: #777;
+    font-size: 80%;
+}
+#pageFooter a,
+#pageFooter a:visited {
+    color: #777;
+}
+
+/**
+ * Your markdown-themeable-pdf custom styles
+ *
+ * The default file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/templates
+ * The base css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/css
+ * The current highlight.js css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/node_modules/highlight.js/styles
+ */
+
+/*
+html, body {
+	color: red;
+}
+*/
+
+/**
+ * GitHub Gist Theme
+ * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
+ */
+
+.hljs {
+  display: block;
+  background: white;
+  padding: 0.5em;
+  color: #333333;
+  overflow-x: auto;
+}
+
+.hljs-comment,
+.hljs-meta {
+  color: #969896;
+}
+
+.hljs-string,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+  color: #df5000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #a71d5d;
+}
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attribute {
+  color: #0086b3;
+}
+
+.hljs-section,
+.hljs-name {
+  color: #63a35c;
+}
+
+.hljs-tag {
+  color: #333333;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #795da3;
+}
+
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea;
+}
+
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+pre { white-space: pre-wrap !important; word-break: break-word !important; overflow: hidden !important;}
+</style>
+</head>
+<body>
+<div id="pageContent">
+<h1 id="typography">Typography</h1>
+<h2 id="headings">Headings</h2>
+<p>Headings from <code>h1</code> through <code>h6</code> are constructed with a <code>#</code> for each level:</p>
+<pre><code class="hljs github-gist-css markdown"><span class="hljs-section"># h1 Heading</span>
+<span class="hljs-section">## h2 Heading</span>
+<span class="hljs-section">### h3 Heading</span>
+<span class="hljs-section">#### h4 Heading</span>
+<span class="hljs-section">##### h5 Heading</span>
+<span class="hljs-section">###### h6 Heading</span>
+</code></pre>
+<p>Renders to:</p>
+<h1 id="h1-heading">h1 Heading</h1>
+<h2 id="h2-heading">h2 Heading</h2>
+<h3 id="h3-heading">h3 Heading</h3>
+<h4 id="h4-heading">h4 Heading</h4>
+<h5 id="h5-heading">h5 Heading</h5>
+<h6 id="h6-heading">h6 Heading</h6>
+<p>HTML:</p>
+<pre><code class="hljs github-gist-css html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>h1 Heading<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>h2 Heading<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>h3 Heading<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>h4 Heading<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h5</span>&gt;</span>h5 Heading<span class="hljs-tag">&lt;/<span class="hljs-name">h5</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>h6 Heading<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span>
+</code></pre>
+<br>
+<br>
+<br>
+<h2 id="horizontal-rules">Horizontal Rules</h2>
+<p>The HTML <code>&lt;hr&gt;</code> element is for creating a &quot;thematic break&quot; between paragraph-level elements. In markdown, you can create a <code>&lt;hr&gt;</code> with any of the following:</p>
+<ul>
+<li><code>___</code>: three consecutive underscores</li>
+<li><code>---</code>: three consecutive dashes</li>
+<li><code>***</code>: three consecutive asterisks</li>
+</ul>
+<p>renders to:</p>
+<hr>
+<hr>
+<hr>
+<br>
+<br>
+<br>
+<h2 id="body-copy">Body Copy</h2>
+<p>Body copy written as normal, plain text will be wrapped with <code>&lt;p&gt;&lt;/p&gt;</code> tags in the rendered HTML.</p>
+<p>So this body copy:</p>
+<pre><code class="hljs github-gist-css markdown">Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.
+</code></pre>
+<p>renders to this HTML:</p>
+<pre><code class="hljs github-gist-css html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<br>
+<br>
+<br>
+<h2 id="emphasis">Emphasis</h2>
+<h3 id="bold">Bold</h3>
+<p>For emphasizing a snippet of text with a heavier font-weight.</p>
+<p>The following snippet of text is <strong>rendered as bold text</strong>.</p>
+<pre><code class="hljs github-gist-css markdown"><span class="hljs-strong">**rendered as bold text**</span>
+</code></pre>
+<p>renders to:</p>
+<p><strong>rendered as bold text</strong></p>
+<p>and this HTML</p>
+<pre><code class="hljs github-gist-css html"><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>rendered as bold text<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
+</code></pre>
+<h3 id="italics">Italics</h3>
+<p>For emphasizing a snippet of text with italics.</p>
+<p>The following snippet of text is <em>rendered as italicized text</em>.</p>
+<pre><code class="hljs github-gist-css markdown"><span class="hljs-emphasis">_rendered as italicized text_</span>
+</code></pre>
+<p>renders to:</p>
+<p><em>rendered as italicized text</em></p>
+<p>and this HTML:</p>
+<pre><code class="hljs github-gist-css html"><span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>rendered as italicized text<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>
+</code></pre>
+<h3 id="strikethrough">strikethrough</h3>
+<p>In GFM you can do strickthroughs.</p>
+<pre><code class="hljs github-gist-css markdown">~~Strike through this text.~~
+</code></pre>
+<p>Which renders to:</p>
+<p><s>Strike through this text.</s></p>
+<br>
+<br>
+<br>
+<h2 id="blockquotes">Blockquotes</h2>
+<p>For quoting blocks of content from another source within your document.</p>
+<p>Add <code>&gt;</code> before any text you want to quote.</p>
+<pre><code class="hljs github-gist-css markdown">Add <span class="hljs-code">`&gt;`</span> before any text you want to quote. 
+</code></pre>
+<p>Renders to:</p>
+<blockquote>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+</blockquote>
+<p>and this HTML:</p>
+<pre><code class="hljs github-gist-css html"><span class="hljs-tag">&lt;<span class="hljs-name">blockquote</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">blockquote</span>&gt;</span>
+</code></pre>
+<p>Blockquotes can also be nested:</p>
+<pre><code class="hljs github-gist-css markdown"><span class="hljs-quote">&gt; Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. </span>
+Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi. 
+&gt;&gt; Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor 
+odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
+&gt;&gt;&gt; Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. 
+Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi. 
+</code></pre>
+<p>Renders to:</p>
+<blockquote>
+<p>Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue.
+Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.</p>
+<blockquote>
+<p>Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor
+odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue.
+Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<br>
+<br>
+<br>
+<h2 id="lists">Lists</h2>
+<h3 id="unordered">Unordered</h3>
+<p>A list of items in which the order of the items does not explicitly matter.</p>
+<p>You may use any of the following symbols to denote bullets for each list item:</p>
+<pre><code class="hljs github-gist-css markdown"><span class="hljs-bullet">* </span>valid bullet
+<span class="hljs-bullet">- </span>valid bullet
+<span class="hljs-bullet">+ </span>valid bullet
+</code></pre>
+<p>For example</p>
+<pre><code class="hljs github-gist-css markdown"><span class="hljs-bullet">+ </span>Lorem ipsum dolor sit amet
+<span class="hljs-bullet">+ </span>Consectetur adipiscing elit
+<span class="hljs-bullet">+ </span>Integer molestie lorem at massa
+<span class="hljs-bullet">+ </span>Facilisis in pretium nisl aliquet
+<span class="hljs-bullet">+ </span>Nulla volutpat aliquam velit
+  - Phasellus iaculis neque
+  - Purus sodales ultricies
+  - Vestibulum laoreet porttitor sem
+  - Ac tristique libero volutpat at
+<span class="hljs-bullet">+ </span>Faucibus porta lacus fringilla vel
+<span class="hljs-bullet">+ </span>Aenean sit amet erat nunc
+<span class="hljs-bullet">+ </span>Eget porttitor lorem
+</code></pre>
+<p>Renders to:</p>
+<ul>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Consectetur adipiscing elit</li>
+<li>Integer molestie lorem at massa</li>
+<li>Facilisis in pretium nisl aliquet</li>
+<li>Nulla volutpat aliquam velit
+<ul>
+<li>Phasellus iaculis neque</li>
+<li>Purus sodales ultricies</li>
+<li>Vestibulum laoreet porttitor sem</li>
+<li>Ac tristique libero volutpat at</li>
+</ul>
+</li>
+<li>Faucibus porta lacus fringilla vel</li>
+<li>Aenean sit amet erat nunc</li>
+<li>Eget porttitor lorem</li>
+</ul>
+<p>And this HTML</p>
+<pre><code class="hljs github-gist-css html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Lorem ipsum dolor sit amet<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Consectetur adipiscing elit<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Integer molestie lorem at massa<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Facilisis in pretium nisl aliquet<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Nulla volutpat aliquam velit
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Phasellus iaculis neque<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Purus sodales ultricies<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Vestibulum laoreet porttitor sem<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Ac tristique libero volutpat at<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Faucibus porta lacus fringilla vel<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Aenean sit amet erat nunc<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Eget porttitor lorem<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+</code></pre>
+<h3 id="ordered">Ordered</h3>
+<p>A list of items in which the order of items does explicitly matter.</p>
+<pre><code class="hljs github-gist-css markdown"><span class="hljs-bullet">1. </span>Lorem ipsum dolor sit amet
+<span class="hljs-bullet">2. </span>Consectetur adipiscing elit
+<span class="hljs-bullet">3. </span>Integer molestie lorem at massa
+<span class="hljs-bullet">4. </span>Facilisis in pretium nisl aliquet
+<span class="hljs-bullet">5. </span>Nulla volutpat aliquam velit
+<span class="hljs-bullet">6. </span>Faucibus porta lacus fringilla vel
+<span class="hljs-bullet">7. </span>Aenean sit amet erat nunc
+<span class="hljs-bullet">8. </span>Eget porttitor lorem
+</code></pre>
+<p>Renders to:</p>
+<ol>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Consectetur adipiscing elit</li>
+<li>Integer molestie lorem at massa</li>
+<li>Facilisis in pretium nisl aliquet</li>
+<li>Nulla volutpat aliquam velit</li>
+<li>Faucibus porta lacus fringilla vel</li>
+<li>Aenean sit amet erat nunc</li>
+<li>Eget porttitor lorem</li>
+</ol>
+<p>And this HTML:</p>
+<pre><code class="hljs github-gist-css html"><span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Lorem ipsum dolor sit amet<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Consectetur adipiscing elit<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Integer molestie lorem at massa<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Facilisis in pretium nisl aliquet<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Nulla volutpat aliquam velit<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Faucibus porta lacus fringilla vel<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Aenean sit amet erat nunc<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Eget porttitor lorem<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span>
+</code></pre>
+<p><strong>TIP</strong>: If you just use <code>1.</code> for each number, GitHub will automatically number each item. For example:</p>
+<pre><code class="hljs github-gist-css markdown"><span class="hljs-bullet">1. </span>Lorem ipsum dolor sit amet
+<span class="hljs-bullet">1. </span>Consectetur adipiscing elit
+<span class="hljs-bullet">1. </span>Integer molestie lorem at massa
+<span class="hljs-bullet">1. </span>Facilisis in pretium nisl aliquet
+<span class="hljs-bullet">1. </span>Nulla volutpat aliquam velit
+<span class="hljs-bullet">1. </span>Faucibus porta lacus fringilla vel
+<span class="hljs-bullet">1. </span>Aenean sit amet erat nunc
+<span class="hljs-bullet">1. </span>Eget porttitor lorem
+</code></pre>
+<p>Renders to:</p>
+<ol>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Consectetur adipiscing elit</li>
+<li>Integer molestie lorem at massa</li>
+<li>Facilisis in pretium nisl aliquet</li>
+<li>Nulla volutpat aliquam velit</li>
+<li>Faucibus porta lacus fringilla vel</li>
+<li>Aenean sit amet erat nunc</li>
+<li>Eget porttitor lorem</li>
+</ol>
+<br>
+<br>
+<br>
+<h2 id="code">Code</h2>
+<h3 id="inline-code">Inline code</h3>
+<p>Wrap inline snippets of code with <code>`</code>.</p>
+<p>For example, <code>&lt;section&gt;&lt;/section&gt;</code> should be wrapped as &quot;inline&quot;.</p>
+<pre><code class="hljs github-gist-css html">For example, `<span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>` should be wrapped as "inline".
+</code></pre>
+<h3 id="indented-code">Indented code</h3>
+<p>Or indent several lines of code by at least four spaces, as in:</p>
+<pre><code class="hljs github-gist-css js">    <span class="hljs-comment">// Some comments</span>
+    line <span class="hljs-number">1</span> <span class="hljs-keyword">of</span> code
+    line <span class="hljs-number">2</span> <span class="hljs-keyword">of</span> code
+    line <span class="hljs-number">3</span> <span class="hljs-keyword">of</span> code
+</code></pre>
+<pre><code>// Some comments
+line 1 of code
+line 2 of code
+line 3 of code
+</code></pre>
+<h3 id="block-code-fences">Block code &quot;fences&quot;</h3>
+<p>Use &quot;fences&quot;  <code>```</code> to block in multiple lines of code.</p>
+<pre>
+``` html
+Sample text here...
+```
+</pre>
+<pre><code>Sample text here...
+</code></pre>
+<p>HTML:</p>
+<pre><code class="hljs github-gist-css html"><span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Sample text here...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+</code></pre>
+<h3 id="syntax-highlighting">Syntax highlighting</h3>
+<p>GFM, or &quot;GitHub Flavored Markdown&quot; also supports syntax highlighting. To activate it, simply add the file extension of the language you want to use directly after the first code &quot;fence&quot;, <code>``` js</code>, and syntax highlighting will automatically be applied in the rendered HTML. For example, to apply syntax highlighting to JavaScript code:</p>
+<pre>
+``` javascript
+grunt.initConfig({
+  assemble: {
+    options: {
+      assets: 'docs/assets',
+      data: 'src/data/*.{json,yml}',
+      helpers: 'src/custom-helpers.js',
+      partials: ['src/partials/**/*.{hbs,md}']
+    },
+    pages: {
+      options: {
+        layout: 'default.hbs'
+      },
+      files: {
+        './': ['src/templates/pages/index.hbs']
+      }
+    }
+  }
+};
+```
+</pre>
+<p>Renders to:</p>
+<pre><code class="hljs github-gist-css javascript">grunt.initConfig({
+  assemble: {
+    options: {
+      assets: <span class="hljs-string">'docs/assets'</span>,
+      data: <span class="hljs-string">'src/data/*.{json,yml}'</span>,
+      helpers: <span class="hljs-string">'src/custom-helpers.js'</span>,
+      partials: [<span class="hljs-string">'src/partials/**/*.{hbs,md}'</span>]
+    },
+    pages: {
+      options: {
+        layout: <span class="hljs-string">'default.hbs'</span>
+      },
+      files: {
+        <span class="hljs-string">'./'</span>: [<span class="hljs-string">'src/templates/pages/index.hbs'</span>]
+      }
+    }
+  }
+};
+</code></pre>
+<p>And this complicated HTML:</p>
+<pre><code class="hljs github-gist-css xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"highlight"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nx"</span>&gt;</span>grunt<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nx"</span>&gt;</span>initConfig<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>({<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nx"</span>&gt;</span>assemble<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"o"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>{<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nx"</span>&gt;</span>options<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"o"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>{<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nx"</span>&gt;</span>assets<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"o"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s1"</span>&gt;</span>'docs/assets'<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nx"</span>&gt;</span>data<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"o"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s1"</span>&gt;</span>'src/data/*.{json,yml}'<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nx"</span>&gt;</span>helpers<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"o"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s1"</span>&gt;</span>'src/custom-helpers.js'<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nx"</span>&gt;</span>partials<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"o"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>[<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s1"</span>&gt;</span>'src/partials/**/*.{hbs,md}'<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>]<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>},<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nx"</span>&gt;</span>pages<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"o"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>{<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nx"</span>&gt;</span>options<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"o"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>{<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nx"</span>&gt;</span>layout<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"o"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s1"</span>&gt;</span>'default.hbs'<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>},<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nx"</span>&gt;</span>files<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"o"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>{<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s1"</span>&gt;</span>'./'<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"o"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>[<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s1"</span>&gt;</span>'src/templates/pages/index.hbs'<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>]<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p"</span>&gt;</span>};<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<br>
+<br>
+<br>
+<h2 id="tables">Tables</h2>
+<p>Tables are created by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.</p>
+<pre><code class="hljs github-gist-css markdown">| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+</code></pre>
+<p>Renders to:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>path to data files to supply the data that will be passed into templates.</td>
+</tr>
+<tr>
+<td>engine</td>
+<td>engine to be used for processing templates. Handlebars is the default.</td>
+</tr>
+<tr>
+<td>ext</td>
+<td>extension to be used for dest files.</td>
+</tr>
+</tbody>
+</table>
+<p>And this HTML:</p>
+<pre><code class="hljs github-gist-css html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Option<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Description<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>path to data files to supply the data that will be passed into templates.<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>engine<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>engine to be used for processing templates. Handlebars is the default.<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>ext<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>extension to be used for dest files.<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+</code></pre>
+<h3 id="right-aligned-text">Right aligned text</h3>
+<p>Adding a colon on the right side of the dashes below any heading will right align text for that column.</p>
+<pre><code class="hljs github-gist-css markdown">| Option | Description |
+| ------:| -----------:|
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Option</th>
+<th style="text-align:right">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">data</td>
+<td style="text-align:right">path to data files to supply the data that will be passed into templates.</td>
+</tr>
+<tr>
+<td style="text-align:right">engine</td>
+<td style="text-align:right">engine to be used for processing templates. Handlebars is the default.</td>
+</tr>
+<tr>
+<td style="text-align:right">ext</td>
+<td style="text-align:right">extension to be used for dest files.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<br>
+<h2 id="links">Links</h2>
+<h3 id="basic-link">Basic link</h3>
+<pre><code class="hljs github-gist-css markdown">[<span class="hljs-string">Assemble</span>](<span class="hljs-link">http://assemble.io</span>)
+</code></pre>
+<p>Renders to (hover over the link, there is no tooltip):</p>
+<p><a href="http://assemble.io">Assemble</a></p>
+<p>HTML:</p>
+<pre><code class="hljs github-gist-css html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"http://assemble.io"</span>&gt;</span>Assemble<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+<h3 id="add-a-title">Add a title</h3>
+<pre><code class="hljs github-gist-css markdown">[<span class="hljs-string">Upstage</span>](<span class="hljs-link">https://github.com/upstage/ "Visit Upstage!"</span>)
+</code></pre>
+<p>Renders to (hover over the link, there should be a tooltip):</p>
+<p><a href="https://github.com/upstage/" title="Visit Upstage!">Upstage</a></p>
+<p>HTML:</p>
+<pre><code class="hljs github-gist-css html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://github.com/upstage/"</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"Visit Upstage!"</span>&gt;</span>Upstage<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+<h3 id="named-anchors">Named Anchors</h3>
+<p>Named anchors enable you to jump to the specified anchor point on the same page. For example, each of these chapters:</p>
+<pre><code class="hljs github-gist-css markdown"><span class="hljs-section"># Table of Contents</span>
+  * [<span class="hljs-string">Chapter 1</span>](<span class="hljs-link">#chapter-1</span>)
+  * [<span class="hljs-string">Chapter 2</span>](<span class="hljs-link">#chapter-2</span>)
+  * [<span class="hljs-string">Chapter 3</span>](<span class="hljs-link">#chapter-3</span>)
+</code></pre>
+<p>will jump to these sections:</p>
+<pre><code class="hljs github-gist-css markdown"><span class="hljs-section">## Chapter 1 &lt;a id="chapter-1"&gt;&lt;/a&gt;</span>
+Content for chapter one.
+
+<span class="hljs-section">## Chapter 2 &lt;a id="chapter-2"&gt;&lt;/a&gt;</span>
+Content for chapter one.
+
+<span class="hljs-section">## Chapter 3 &lt;a id="chapter-3"&gt;&lt;/a&gt;</span>
+Content for chapter one.
+</code></pre>
+<p><strong>NOTE</strong> that specific placement of the anchor tag seems to be arbitrary. They are placed inline here since it seems to be unobtrusive, and it works.</p>
+<br>
+<br>
+<br>
+<h2 id="images">Images</h2>
+<p>Images have a similar syntax to links but include a preceding exclamation point.</p>
+<pre><code class="hljs github-gist-css markdown">![<span class="hljs-string">Minion</span>](<span class="hljs-link">http://octodex.github.com/images/minion.png</span>)
+</code></pre>
+<p><img src="http://octodex.github.com/images/minion.png" alt="Minion"></p>
+<p>or</p>
+<pre><code class="hljs github-gist-css markdown">![<span class="hljs-string">Alt text</span>](<span class="hljs-link">http://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat"</span>)
+</code></pre>
+<p><img src="http://octodex.github.com/images/stormtroopocat.jpg" alt="Alt text" title="The Stormtroopocat"></p>
+<p>Like links, Images also have a footnote style syntax</p>
+<pre><code class="hljs github-gist-css markdown">![<span class="hljs-string">Alt text</span>][<span class="hljs-symbol">id</span>]
+</code></pre>
+<p><img src="http://octodex.github.com/images/dojocat.jpg" alt="Alt text" title="The Dojocat"></p>
+<p>With a reference later in the document defining the URL location:</p>
+<pre><code>[id]: http://octodex.github.com/images/dojocat.jpg  &quot;The Dojocat&quot;
+</code></pre>
+
+</div></body>
+</html>
